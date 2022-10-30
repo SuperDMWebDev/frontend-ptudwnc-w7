@@ -29,22 +29,15 @@ function HomePage() {
     if (!accessToken) {
       navigate("/signin");
     }
-
-    try {
-    } catch (err) {
-      localStorage.removeItem("accessToken");
-      navigate("/signin");
-    }
   };
 
   useEffect(() => {
-    console.log("data", data);
-  }, [data]);
-  useEffect(() => {
+    verifyToken();
     refetch();
   }, []);
   const onLogout = () => {
-    localStorage.removeItem("/accessToken");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     navigate("/signin");
   };
   if (isLoading) {
