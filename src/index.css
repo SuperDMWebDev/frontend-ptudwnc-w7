@@ -17,3 +17,54 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+[class$="_box"] label {
+  margin: 20px 0px;
+  display: block;
+  color: #fff;
+}
+.signup-input,
+.signin-input {
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #000;
+  width: 100%;
+  padding: 10px 10px;
+  outline: none;
+}
+.signup-submit {
+  margin: 0 auto;
+  width: fit-content;
+  padding: 8px 20px;
+  background-color: #fff;
+  color: #000;
+  margin-top: 20px;
+  float: right;
+  border-radius: 10px;
+}
+.login-btn {
+  background-color: green;
+  width: 100%;
+  border-radius: 10px;
+  height: 40px;
+  margin: 20px 0px;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  line-height: 20px;
+}
+.text-header {
+  font-size: 60px;
+  color: #fff;
+  margin: 30px auto;
+  text-align: center;
+}
+.app-background {
+  background-color: #337196;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -6,7 +6,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-[#093545] w-screen h-screen flex justify-center items-center">
+      <div className="app-background bg-[#093545] w-screen h-screen flex justify-center items-center">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
