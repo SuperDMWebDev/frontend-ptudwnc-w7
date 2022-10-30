@@ -7,25 +7,6 @@ import * as Yup from "yup";
 import { loginUser } from "../../components/api";
 export default function SignIn() {
   const navigate = useNavigate();
-  // const onLogin = async () => {
-  //   try {
-  //     // call api
-  //     const res = await axios.post(
-  //       `${process.env.REACT_APP_API_URL}/auth/login`,
-  //       {
-  //         username,
-  //         password,
-  //       }
-  //     );
-  //     const { accessToken, refreshToken, msg } = res.data;
-  //     localStorage.setItem("accessToken", accessToken);
-  //     localStorage.setItem("refreshToken", refreshToken);
-  //     alert(msg);
-  //     navigate("/");
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
   const signInSchema = Yup.object({
     username: Yup.string().min(2, "Minimum 2 characters").required("Required"),
     password: Yup.string().min(3, "Minimum 3 characters").required("Required"),
