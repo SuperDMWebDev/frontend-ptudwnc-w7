@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Styled from "./style";
-import { FormikContext, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { loginUser } from "../../components/api";
 export default function SignIn() {
@@ -20,11 +19,17 @@ export default function SignIn() {
     onSubmit: async (value) => {
       try {
         const responseSignIn = await loginUser(value.username, value.password);
-        const { accessToken, refreshToken, msg } = responseSignIn;
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        alert(msg);
-        navigate("/");
+        const { data, status } = responseSignIn;
+
+        if (status != 200) {
+          alert(data);
+        } else {
+          const { accessToken, refreshToken, msg } = data;
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("refreshToken", refreshToken);
+          alert(msg);
+          navigate("/");
+        }
       } catch (err) {
         throw err;
       }

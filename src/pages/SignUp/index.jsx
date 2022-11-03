@@ -1,39 +1,10 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useFormik, Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from "../../components/api";
 export default function SignUp() {
-  // const [username, setUserName] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [repeatPassword, setRepeatPassword] = useState("");
-  // const [error, setError] = useState("");
   const navigate = useNavigate();
-  // const onSignUp = async () => {
-  //   if (password != repeatPassword) {
-  //     setError("Password do not match!");
-  //   } else {
-  //     try {
-  //       //localhost: 5000/auth/register
-  //       const res = await axios.post(
-  //         `${process.env.REACT_APP_API_URL}/auth/register`,
-  //         {
-  //           username,
-  //           password,
-  //         }
-  //       );
-  //       console.log("response singup", res);
-  //       const userResponse = res.data.username;
-  //       //alert user have successfully register
-  //       alert(`User ${userResponse} have successfully signed up`);
-  //       navigate("/signin");
-  //     } catch (err) {
-  //       console.log("err", err.message);
-  //       setError(err.message);
-  //     }
-  //   }
-  // };
   const signUpSchema = Yup.object({
     username: Yup.string().min(2, "Minimum 2 characters").required("Required"),
     password: Yup.string().min(3, "Minimum 3 characters").required("Required"),
@@ -50,7 +21,12 @@ export default function SignUp() {
     validationSchema: signUpSchema,
     onSubmit: async (value) => {
       const data = await registerUser(value.username, value.password);
-      const userResponse = data.username;
+      console.log("data register ", data);
+      if (data.status != 200) {
+        alert(data.data);
+        return;
+      }
+      const userResponse = data.data.username;
       //alert user have successfully register
       alert(`User ${userResponse} have successfully signed up`);
       navigate("/signin");

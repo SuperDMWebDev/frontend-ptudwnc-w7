@@ -8,22 +8,50 @@ export const fetchUsers = async (accessToken) => {
   return data;
 };
 export const registerUser = async (username, password) => {
-  const { data } = await axios.post(
-    `${process.env.REACT_APP_API_URL}/auth/register`,
-    {
+  const response = await axios
+    .post(`${process.env.REACT_APP_API_URL}/auth/register`, {
       username,
       password,
-    }
-  );
-  return data;
+    })
+    .catch((error) => {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        const objectReturn = {
+          data: error.response.data,
+          status: error.response.status,
+        };
+        return objectReturn;
+      }
+    });
+  const { data, status } = response;
+  const objectReturn = {
+    data: data,
+    status: status,
+  };
+  return objectReturn;
 };
 export const loginUser = async (username, password) => {
-  const { data } = await axios.post(
-    `${process.env.REACT_APP_API_URL}/auth/login`,
-    {
+  const response = await axios
+    .post(`${process.env.REACT_APP_API_URL}/auth/login`, {
       username,
       password,
-    }
-  );
-  return data;
+    })
+    .catch((error) => {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        const objectReturn = {
+          data: error.response.data,
+          status: error.response.status,
+        };
+        return objectReturn;
+      }
+    });
+  const { data, status } = response;
+  const objectReturn = {
+    data: data,
+    status: status,
+  };
+  return objectReturn;
 };
